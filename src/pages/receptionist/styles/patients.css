@@ -1,0 +1,13 @@
+.pt-contanier {
+    padding: 2em;
+
+}
+
+
+
+@media screen and (min-width:1200px) {
+
+    .pt-contanier {
+        align-items: center;
+    }
+}

@@ -1,0 +1,61 @@
+.aside-bar {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2em;
+    margin-bottom: 2em;
+}
+
+.logo {
+    width: 20%;
+    max-width: 220px;
+}
+
+.nav-bar {
+    margin: 0 auto;
+    display: flex;
+    gap: 2em;
+    align-items: center;
+}
+
+
+
+.settings {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}
+
+.nav_item,
+.setting_item {
+    display: flex;
+    gap: 1em;
+}
+
+
+
+.nav-text {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.nav-icon {
+    width: 30px;
+}
+
+@media screen and (max-width : 900px) {
+
+
+    .nav-text,
+    .logo {
+        display: none;
+        visibility: none;
+    }
+
+    .aside-bar {
+        justify-content: space-around;
+    }
+
+    .nav-bar {
+        margin: 0;
+    }
+}

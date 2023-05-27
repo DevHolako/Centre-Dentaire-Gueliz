@@ -1,0 +1,22 @@
+/* //---------Dashbord container----------// */
+.dashbord-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.section2 {
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+/* //---------// */
+@media screen and (min-width : 1024px) {
+    .dashbord-container {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 1.3em;
+    }
+}

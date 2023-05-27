@@ -1,0 +1,17 @@
+/* Login page css */
+
+.login-warrper {
+    display: flex;
+    flex-direction: column;
+    gap: 4em;
+    margin-top: 4em;
+}
+
+.card_title span {
+    color: #b235a8
+}
+
+
+.login-form {
+    height: 450px;
+}

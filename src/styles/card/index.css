@@ -1,0 +1,108 @@
+/* custom card css  */
+.card_title {
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: block;
+    font-weight: bold;
+    font-size: x-large;
+    margin-top: 1.5em;
+    text-align: center;
+}
+
+.custom_card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 350px;
+    min-width: 100%;
+    gap: 2em;
+    padding: 2em;
+}
+
+.inputBox {
+    position: relative;
+}
+
+.inputBox input,
+.inputBox select {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: none;
+    color: #000;
+    font-size: 1em;
+    background: transparent;
+    border-left: 2px solid #000;
+    border-bottom: 2px solid #000;
+    transition: 0.1s;
+    border-bottom-left-radius: 8px;
+}
+
+.inputBox span {
+    margin-top: 5px;
+    position: absolute;
+    left: 0;
+    transform: translateY(-13px);
+    margin-left: 10px;
+    padding: 10px;
+    pointer-events: none;
+    font-size: 10px;
+    color: #000;
+    text-transform: uppercase;
+    transition: 0.5s;
+    letter-spacing: 3px;
+    border-radius: 8px;
+}
+
+.inputBox input:valid~span,
+.inputBox select:valid~span,
+.inputBox select:focus~span,
+.inputBox input:focus~span {
+    transform: translateX(113px) translateY(-15px);
+    font-size: 0.8em;
+    padding: 5px 10px;
+    background: #000;
+    letter-spacing: 0.2em;
+    color: #fff;
+    border: 2px;
+}
+
+.inputBox input:valid,
+.inputBox input:focus,
+.inputBox select:valid,
+.inputBox select:focus {
+    border: 2px solid #000;
+    border-radius: 8px;
+}
+
+/* custom  media queris for card */
+@media screen and (min-width:700px) {
+
+    .inputBox,
+    .inputBox1 {
+        margin-top: 1em;
+        min-width: 90%;
+    }
+}
+
+@media screen and (max-width:700px) {
+    .custom_card {
+        padding: 1em;
+        align-items: unset;
+        min-height: none;
+    }
+
+    .inputBox select {
+        width: 100%;
+        min-width: 200px;
+    }
+
+    .inputBox select:valid~span,
+    .inputBox select:focus~span {
+        transform: translateX(113px) translateY(-20px);
+    }
+}
+
+/* custom card css  */
