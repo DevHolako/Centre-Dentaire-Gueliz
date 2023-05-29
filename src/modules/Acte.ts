@@ -16,7 +16,7 @@ export const ActeSchema = z.object({
   montan: z.string().transform((value) => parseInt(value, 10)),
   date: z.string(),
   method: z
-    .enum(["card", "espce", "chéque"])
+    .enum(["card", "espece", "chéque"])
     .refine(
       (value) => value !== undefined,
       "method doit être égal à l'une des valeurs suivantes : card, espce, chéque"
