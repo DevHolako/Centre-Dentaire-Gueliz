@@ -12,5 +12,5 @@ export type Acte = {
   montant: number;
   method: string;
   doc_id: number;
-  date: Date | string;
+  date: string;
 };

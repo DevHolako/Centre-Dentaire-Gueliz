@@ -54,7 +54,7 @@ export const cols: TableColumn<Acte>[] = [
     name: "Actions",
     cell: (row) => (
       <>
-        <EditPatients />
+        <EditPatients id={row.id} />
         <Delete id={row.id} />
       </>
     ),

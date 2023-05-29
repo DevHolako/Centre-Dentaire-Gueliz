@@ -3,7 +3,7 @@ import Layout from "@/pages/layouts/Layout";
 import ReceptionistDashbord from "@/pages/receptionist";
 import DocPatientsList from "@/pages/receptionist/DocPatientsList";
 import Patients from "@/pages/receptionist/Patients";
-import Settings from "@/pages/receptionist/Settings";
+import Settings from "@/pages/receptionist/Profile";
 import { createBrowserRouter } from "react-router-dom";
 
 //**end of imports */
