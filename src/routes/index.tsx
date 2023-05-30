@@ -1,7 +1,9 @@
 import Login from "@/pages/auth/Login";
 import Layout from "@/pages/layouts/Layout";
 import ReceptionistDashbord from "@/pages/receptionist";
-import DocPatientsList from "@/pages/receptionist/DocPatientsList";
+import DocPatientsList, {
+  GetPatientByDoc,
+} from "@/pages/receptionist/DocPatientsList";
 import Patients from "@/pages/receptionist/Patients";
 import Settings from "@/pages/receptionist/Profile";
 import { createBrowserRouter } from "react-router-dom";
@@ -29,9 +31,9 @@ export const router = createBrowserRouter([
         element: <Settings />,
       },
       {
-        path: "table-doc/:id",
+        path: "doc/:id",
         element: <DocPatientsList />,
-        // loader: GetPatientByDoc,
+        loader: GetPatientByDoc,
       },
     ],
   },
