@@ -7,7 +7,7 @@ import NavRece from "./NavRece";
 import NavAdmin from "./NavAdmin";
 
 function Header() {
-  let role = localStorage.getItem("role");
+  const role = localStorage.getItem("role");
   return (
     <>
       <aside className="aside-bar">

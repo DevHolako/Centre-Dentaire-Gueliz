@@ -7,16 +7,22 @@ import { useState } from "react";
 import DataTable from "react-data-table-component";
 import { Navigate, useLoaderData } from "react-router-dom";
 
-export const GetPatientByDoc = async ({ params }: any) => {
-  const List: Acte[] = ActeData.filter((obj) => params.id == obj.doc_id);
-  if (!List) return <Navigate to={"/dashbord"} />;
-  return List;
+export const GetPatientByDoc = async ({
+  params,
+}: {
+  params: { id: string };
+}) => {
+  const list: Acte[] = ActeData.filter(
+    (obj) => parseInt(params.id) === obj.doc_id
+  );
+  if (!list.length) return null;
+  return list;
 };
-function DocPatientsList() {
-  const patientData = useLoaderData();
-  if (!patientData) return <Navigate to={"/dashbord"} />;
-  const [data, setData] = useState<Acte[]>(patientData as Acte[]);
 
+function DocPatientsList() {
+  const patientData = useLoaderData() as Acte[];
+  const [data, setData] = useState(patientData);
+  if (!patientData) return <Navigate to={"/dashbord"} />;
   return (
     <div className="pt-contanier bg">
       <h1 className="title is-2 is-center">List Patients</h1>

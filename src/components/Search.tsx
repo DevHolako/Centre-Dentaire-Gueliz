@@ -3,12 +3,12 @@ import "@styles/search/index.css";
 import { useDebouncedState } from "@mantine/hooks";
 import { Acte } from "@/utils/types";
 
-type Props = {
-  setter: (L: any[]) => void;
-  data: any[];
+type Props<T> = {
+  setter: (data: T[]) => void;
+  data: T[];
 };
 
-function Search({ setter, data }: Props) {
+function Search({ setter, data }: Props<Acte>) {
   const [searchQuery, setSearchQuery] = useDebouncedState("", 100);
   const [originalData] = useState(data);
 
