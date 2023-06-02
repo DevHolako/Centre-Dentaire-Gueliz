@@ -7,11 +7,7 @@ import { useState } from "react";
 import DataTable from "react-data-table-component";
 import { Navigate, useLoaderData } from "react-router-dom";
 
-export const GetPatientByDoc = async ({
-  params,
-}: {
-  params: { id: string };
-}) => {
+export const GetPatientByDoc = async ({ params }: any) => {
   const list: Acte[] = ActeData.filter(
     (obj) => parseInt(params.id) === obj.doc_id
   );
