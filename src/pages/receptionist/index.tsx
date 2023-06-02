@@ -12,8 +12,7 @@ createTheme("holako", {
 function ReceptionistDashbord() {
   return (
     <div className="dashbord-container">
-      <ActeForm />
-      {/* <PatientCard method={"ajouter"} /> */}
+      <ActeForm method="Ajouter" />
       <div className="bg section2">
         <h2 className="title is-3">RECETTE MEDECIN</h2>
         <DataTable
