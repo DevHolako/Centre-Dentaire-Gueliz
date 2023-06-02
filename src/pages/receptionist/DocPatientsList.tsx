@@ -3,7 +3,6 @@ import { cols } from "@/Data/dt-colsfull";
 import Search from "@/components/Search";
 import { PatientsStyles } from "@/styles/table/patient";
 import { Acte } from "@/utils/types";
-import { useDebouncedState } from "@mantine/hooks";
 import { useState } from "react";
 import DataTable from "react-data-table-component";
 import { Navigate, useLoaderData } from "react-router-dom";
