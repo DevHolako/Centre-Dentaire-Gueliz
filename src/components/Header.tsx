@@ -4,15 +4,16 @@ import logo from "@assets/logo.png";
 import icoSettings from "@assets/asied/settings.svg";
 import icoLogout from "@assets/asied/logout.svg";
 import NavRece from "./NavRece";
+import NavAdmin from "./NavAdmin";
 
 function Header() {
-  const role = "receptionist";
+  let role = localStorage.getItem("role");
   return (
     <>
       <aside className="aside-bar">
         <img src={logo} alt="logo" id="logo" className="logo" />
         <nav className="nav-bar">
-          {role == "receptionist" ? <NavRece /> : <></>}
+          {role == "rece" ? <NavRece /> : <NavAdmin />}
         </nav>
         <div className="settings">
           <div className="setting_item">
