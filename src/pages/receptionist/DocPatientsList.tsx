@@ -18,7 +18,7 @@ export const GetPatientByDoc: LoaderFunction = async ({ params }) => {
 function DocPatientsList() {
   const patientData = useLoaderData() as Acte[];
   const [data, setData] = useState(patientData);
-  if (!patientData) return <Navigate to={"/dashbord"} />;
+  if (!patientData) return <Navigate to={"/dashboard"} />;
   return (
     <div className="pt-contanier bg">
       <h1 className="title is-2 is-center">List Patients</h1>

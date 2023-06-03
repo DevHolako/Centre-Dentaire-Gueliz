@@ -9,9 +9,9 @@ createTheme("holako", {
     default: "transparnt",
   },
 });
-function ReceptionistDashbord() {
+function ReceptionistDashboard() {
   return (
-    <div className="dashbord-container">
+    <div className="dashboard-container">
       <ActeForm method="Ajouter" />
       <div className="bg section2">
         <h2 className="title is-3">RECETTE MEDECIN</h2>
@@ -29,4 +29,4 @@ function ReceptionistDashbord() {
   );
 }
 
-export default ReceptionistDashbord;
+export default ReceptionistDashboard;

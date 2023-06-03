@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
-import dashbord from "@assets/asied/dashbord.svg";
+import dashboard from "@assets/asied/dashboard.svg";
 import users from "@assets/asied/users.svg";
 function NavRece() {
   return (
     <>
       <div className="nav_item">
-        <Link to="/dashbord">
-          <img src={dashbord} alt="dash_ico" className="nav-icon" />
+        <Link to="/dashboard">
+          <img src={dashboard} alt="dash_ico" className="nav-icon" />
         </Link>
 
-        <Link to="/dashbord" className="nav-text">
-          Dashbord
+        <Link to="/dashboard" className="nav-text">
+          dashboard
         </Link>
       </div>
       <div className="nav_item">

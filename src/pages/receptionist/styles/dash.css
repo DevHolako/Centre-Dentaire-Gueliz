@@ -1,5 +1,5 @@
-/* //---------Dashbord container----------// */
-.dashbord-container {
+/* //---------dashboard container----------// */
+.dashboard-container {
     display: flex;
     flex-direction: column;
     gap: 2em;
@@ -14,7 +14,7 @@
 
 /* //---------// */
 @media screen and (min-width : 1024px) {
-    .dashbord-container {
+    .dashboard-container {
         display: grid;
         grid-template-columns: 1fr 2fr;
         gap: 1.3em;
