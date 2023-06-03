@@ -28,7 +28,11 @@ function Header() {
             <Link to="/">
               <img src={icoLogout} alt="icoLogout" className="nav-icon" />
             </Link>
-            <Link to="/" className="nav-text">
+            <Link
+              to="/"
+              onClick={() => localStorage.clear()}
+              className="nav-text"
+            >
               Logout
             </Link>
           </div>

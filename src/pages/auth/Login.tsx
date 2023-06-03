@@ -1,12 +1,19 @@
-// import image from "@assets/login.svg";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import "@styles/login/index.css";
 import { LoginFrom, LoginSchema } from "@/modules/Login";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { isLogin, useRole } from "@/auth/utils";
 function Login() {
-  // const role = "rece";
   const navto = useNavigate();
+  const role = useRole();
+  useEffect(() => {
+    if (isLogin()) {
+      if (role == "admin") return navto("/panel");
+      if (role == "rece") return navto("/dashboard");
+    }
+  }, []);
   const {
     register,
     handleSubmit,
@@ -16,9 +23,15 @@ function Login() {
   });
 
   const onSubmit: SubmitHandler<LoginFrom> = (data) => {
-    if (data.username === "holako") localStorage.setItem("role", "rece");
-    if (data.username === "admin") localStorage.setItem("role", "admin");
-    navto("/dashbord");
+    localStorage.setItem("userData", JSON.stringify(data));
+    if (data.username === "holako") {
+      localStorage.setItem("role", "rece");
+      navto("/dashboard");
+    }
+    if (data.username === "admin") {
+      localStorage.setItem("role", "admin");
+      navto("/panel");
+    }
   };
 
   return (
