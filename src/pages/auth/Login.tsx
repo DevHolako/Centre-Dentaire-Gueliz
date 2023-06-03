@@ -16,7 +16,8 @@ function Login() {
   });
 
   const onSubmit: SubmitHandler<LoginFrom> = (data) => {
-    console.log(data);
+    if (data.username === "holako") localStorage.setItem("role", "rece");
+    if (data.username === "admin") localStorage.setItem("role", "admin");
     navto("/dashbord");
   };
 

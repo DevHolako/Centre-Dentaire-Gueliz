@@ -23,10 +23,10 @@ export default function ActeForm({ method = "Ajouter", id }: Props) {
   });
 
   const onSubmit: SubmitHandler<ActeFrom> = (data) => {
+    console.log(isValid);
     console.log(data);
   };
 
-  console.log(isValid);
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}

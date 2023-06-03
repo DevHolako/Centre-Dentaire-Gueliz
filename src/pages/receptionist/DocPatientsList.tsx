@@ -5,12 +5,12 @@ import { PatientsStyles } from "@/styles/table/patient";
 import { Acte } from "@/utils/types";
 import { useState } from "react";
 import DataTable from "react-data-table-component";
-import { Navigate, useLoaderData } from "react-router-dom";
+import { type LoaderFunction, Navigate, useLoaderData } from "react-router-dom";
 
-export const GetPatientByDoc = async ({ params }: any) => {
-  const list: Acte[] = ActeData.filter(
-    (obj) => parseInt(params.id) === obj.doc_id
-  );
+export const GetPatientByDoc: LoaderFunction = async ({ params }) => {
+  const id = params.id;
+  if (!id) return null;
+  const list: Acte[] = ActeData.filter((obj) => parseInt(id) === obj.doc_id);
   if (!list.length) return null;
   return list;
 };

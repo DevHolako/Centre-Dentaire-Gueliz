@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "@styles/search/index.css";
-import { useDebouncedState } from "@mantine/hooks";
 import { Acte } from "@/utils/types";
 
 type Props<T> = {
@@ -9,7 +8,7 @@ type Props<T> = {
 };
 
 function Search({ setter, data }: Props<Acte>) {
-  const [searchQuery, setSearchQuery] = useDebouncedState("", 100);
+  const [searchQuery, setSearchQuery] = useState("");
   const [originalData] = useState(data);
 
   useEffect(() => {
