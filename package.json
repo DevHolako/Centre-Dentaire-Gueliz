@@ -17,6 +17,7 @@
     "@mantine/dates": "^6.0.11",
     "@mantine/hooks": "^6.0.11",
     "@phosphor-icons/react": "^2.0.9",
+    "@tanstack/react-query": "^4.29.12",
     "dayjs": "^1.11.7",
     "path": "^0.12.7",
     "react": "^18.2.0",
