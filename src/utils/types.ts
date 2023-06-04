@@ -14,3 +14,11 @@ export type Acte = {
   doc_id: number;
   date: string;
 };
+
+export type User = {
+  id: number;
+  nomComplete: string;
+  login: string;
+  mdp: string;
+  isAdmin: boolean;
+};
