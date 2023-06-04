@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const LoginSchema = z.object({
-  username: z
+  login: z
     .string({ required_error: "username requierd" })
     .trim()
     .min(2, { message: "nom doit contenir au moins 2 caractères" }),

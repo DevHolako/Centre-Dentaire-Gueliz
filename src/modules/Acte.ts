@@ -22,7 +22,7 @@ export const ActeSchema = z.object({
       "method doit être égal à l'une des valeurs suivantes : card, espce, chéque"
     ),
 
-  doc_id: z.string().transform((value) => parseInt(value, 10)),
+  doc_id: z.string().transform((val) => parseInt(val)),
 });
 
 export type ActeFrom = z.infer<typeof ActeSchema>;
