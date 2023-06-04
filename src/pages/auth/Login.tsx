@@ -14,6 +14,7 @@ function Login() {
       if (role == "rece") return navto("/dashboard");
     }
   }, []);
+
   const {
     register,
     handleSubmit,
@@ -24,11 +25,11 @@ function Login() {
 
   const onSubmit: SubmitHandler<LoginFrom> = (data) => {
     localStorage.setItem("userData", JSON.stringify(data));
-    if (data.username === "holako") {
+    if (data.login === "holako") {
       localStorage.setItem("role", "rece");
       navto("/dashboard");
     }
-    if (data.username === "admin") {
+    if (data.login === "admin") {
       localStorage.setItem("role", "admin");
       navto("/panel");
     }
@@ -48,12 +49,22 @@ function Login() {
         >
           <h2 className="card_title">Login</h2>
           <div className="inputBox">
-            <input type="text" required {...register("username")} />
-            <span className="user">username</span>
-            {errors.username && <p>{errors.username?.message}</p>}
+            <input
+              type="text"
+              required
+              {...register("login")}
+              autoComplete="login"
+            />
+            <span className="user">login</span>
+            {errors.login && <p>{errors.login?.message}</p>}
           </div>
           <div className="inputBox">
-            <input type="password" required {...register("password")} />
+            <input
+              type="password"
+              required
+              {...register("password")}
+              autoComplete="current-password"
+            />
             <span className="user">password</span>
             {errors.password && <p>{errors.password?.message}</p>}
           </div>
