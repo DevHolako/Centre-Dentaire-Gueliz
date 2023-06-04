@@ -10,7 +10,7 @@ function NavRece() {
         </Link>
 
         <Link to="/dashboard" className="nav-text">
-          dashboard
+          Dashboard
         </Link>
       </div>
       <div className="nav_item">

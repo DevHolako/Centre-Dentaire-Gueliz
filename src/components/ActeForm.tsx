@@ -2,10 +2,9 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ActeSchema } from "@/modules/Acte";
 import type { ActeFrom } from "@/modules/Acte";
-import docs from "@/Data/dock-data.json";
-import data from "@/Data/data.json";
+import docs from "@/Data/docs.json";
+import data from "@/Data/actes.json";
 import "@styles/card/index.css";
-import { Acte } from "@/utils/types";
 const PAYMENT_METHODS = ["card", "chéque", "espece"];
 
 type Props = {
@@ -13,7 +12,8 @@ type Props = {
   id?: number;
 };
 export default function ActeForm({ method = "Ajouter", id }: Props) {
-  const target = id ? (data.find((obj) => obj.id === id) as Acte) : null;
+  const target = data.find((obj) => obj.id === id);
+  console.log(target?.doc_id);
   const {
     register,
     handleSubmit,
@@ -38,7 +38,7 @@ export default function ActeForm({ method = "Ajouter", id }: Props) {
           type="text"
           required
           {...register("nom")}
-          value={target ? target.nom : ""}
+          defaultValue={target ? target.nom : ""}
         />
         <span className="user">Nom</span>
         {errors.nom && <p>{errors.nom?.message}</p>}
@@ -48,7 +48,7 @@ export default function ActeForm({ method = "Ajouter", id }: Props) {
           type="text"
           required
           {...register("prenom")}
-          value={target ? target.prenom : ""}
+          defaultValue={target ? target.prenom : ""}
         />
         <span className="user">Prenom</span>
         {errors.prenom && <p>{errors.prenom?.message}</p>}
@@ -58,7 +58,7 @@ export default function ActeForm({ method = "Ajouter", id }: Props) {
           type="text"
           required
           {...register("acte")}
-          value={target ? target.acte : ""}
+          defaultValue={target ? target.acte : ""}
         />
         <span className="user">Acte</span>
         {errors.acte && <p>{errors.acte?.message}</p>}
@@ -68,7 +68,7 @@ export default function ActeForm({ method = "Ajouter", id }: Props) {
           type="number"
           required
           {...register("montan")}
-          value={target ? target.montant : ""}
+          defaultValue={target ? target.montant : ""}
         />
         <span className="user">Montan</span>
         {errors.montan && <p>{errors.montan?.message}</p>}
@@ -79,7 +79,7 @@ export default function ActeForm({ method = "Ajouter", id }: Props) {
           placeholder=""
           required
           {...register("date")}
-          value={target ? target.date : ""}
+          defaultValue={target ? target.date : ""}
         />
         <span className="user">Date</span>
         {errors.date && <p>{errors.date?.message}</p>}
@@ -88,12 +88,12 @@ export default function ActeForm({ method = "Ajouter", id }: Props) {
         <select
           required
           {...register("method")}
-          value={!target ? "" : target.method}
+          defaultValue={!target ? "" : target.method}
         >
-          <option value="" disabled></option>
+          <option defaultValue="" disabled></option>
           <optgroup label="Méthodes de payement">
             {PAYMENT_METHODS.map((method) => (
-              <option key={method} value={method}>
+              <option key={method} defaultValue={method}>
                 {method}
               </option>
             ))}
@@ -106,9 +106,9 @@ export default function ActeForm({ method = "Ajouter", id }: Props) {
         <select
           required
           {...register("doc_id")}
-          value={!target ? "" : target.doc_id}
+          defaultValue={!target ? "" : target.doc_id}
         >
-          <option value="" disabled></option>
+          <option defaultValue="" disabled></option>
           <optgroup label="Medecin">
             {docs.map((doc) => {
               return (

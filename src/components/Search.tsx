@@ -1,24 +1,36 @@
 import { useEffect, useState } from "react";
 import "@styles/search/index.css";
-import { Acte } from "@/utils/types";
+import { Acte, User } from "@/utils/types";
 
-type Props<T> = {
+type Props<T extends Acte | User> = {
   setter: (data: T[]) => void;
   data: T[];
+  type: "Acte" | "User";
 };
 
-function Search({ setter, data }: Props<Acte>) {
+function Search<T extends Acte | User>({ setter, data, type }: Props<T>) {
   const [searchQuery, setSearchQuery] = useState("");
   const [originalData] = useState(data);
 
   useEffect(() => {
-    const filteredData = originalData.filter(
-      (row: Acte) =>
-        row.nom.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        row.prenom.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        row.method.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        row.acte.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const filteredData = originalData.filter((row) => {
+      if (type === "Acte") {
+        const acte = row as Acte;
+        return (
+          acte.nom.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          acte.prenom.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          acte.method.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          acte.acte.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+      } else if (type === "User") {
+        const user = row as User;
+        return (
+          user.nomComplete.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          user.login.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+      }
+      return false;
+    });
     setter(filteredData);
   }, [searchQuery, originalData, setter]);
 

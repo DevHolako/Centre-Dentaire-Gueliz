@@ -21,7 +21,7 @@ function Header() {
               <img src={icoSettings} alt="icoSettings" className="nav-icon" />
             </Link>
             <Link to="setting" className="nav-text">
-              Settings
+              Profil
             </Link>
           </div>
           <div className="setting_item">
@@ -33,7 +33,7 @@ function Header() {
               onClick={() => localStorage.clear()}
               className="nav-text"
             >
-              Logout
+              Déconnexion
             </Link>
           </div>
         </div>
