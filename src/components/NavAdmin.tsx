@@ -20,6 +20,14 @@ function NavAdmin() {
           Utilisateurs
         </Link>
       </div>
+      <div className="nav_item">
+        <Link to="docs">
+          <img src={users} alt="users_ico" className="nav-icon" />
+        </Link>
+        <Link to="docs" className="nav-text">
+          Docs
+        </Link>
+      </div>
     </>
   );
 }

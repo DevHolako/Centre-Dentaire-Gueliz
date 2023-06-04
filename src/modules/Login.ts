@@ -8,7 +8,7 @@ export const LoginSchema = z.object({
   password: z
     .string({ required_error: "password requierd" })
     .trim()
-    .min(2, { message: "acte doit contenir au moins 2 caractères" }),
+    .min(6, { message: "acte doit contenir au moins 6 caractères" }),
 });
 
 export type LoginFrom = z.infer<typeof LoginSchema>;

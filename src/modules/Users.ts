@@ -12,7 +12,7 @@ export const UserSchema = z.object({
   mdp: z
     .string()
     .trim()
-    .min(8, { message: "mote de pass doit contenir au moins 8 caractères" }),
+    .min(6, { message: "mote de pass doit contenir au moins 6 caractères" }),
   isAdmin: z
     .string()
     .default("0")

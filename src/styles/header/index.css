@@ -29,6 +29,7 @@
 .setting_item {
     display: flex;
     gap: 1em;
+    cursor: pointer;
 }
 
 

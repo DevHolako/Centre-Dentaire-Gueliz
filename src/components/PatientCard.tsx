@@ -125,7 +125,7 @@ const ActeCard: React.FC<PatientCardProps> = ({ targetPatient, method }) => {
             <optgroup label="Medecin">
               {docs.map((doc) => (
                 <option key={doc.id} value={doc.id}>
-                  {doc.fullname}
+                  {doc.nomComplete}
                 </option>
               ))}
             </optgroup>

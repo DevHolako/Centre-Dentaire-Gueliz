@@ -113,7 +113,7 @@ export default function ActeForm({ method = "Ajouter", id }: Props) {
             {docs.map((doc) => {
               return (
                 <option key={doc.id} value={doc.id}>
-                  {doc.fullname}
+                  {doc.nomComplete}
                 </option>
               );
             })}

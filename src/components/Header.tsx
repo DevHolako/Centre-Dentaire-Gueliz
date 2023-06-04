@@ -1,13 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "@styles/header/index.css";
 import logo from "@assets/logo.png";
 import icoSettings from "@assets/asied/settings.svg";
 import icoLogout from "@assets/asied/logout.svg";
 import NavRece from "./NavRece";
 import NavAdmin from "./NavAdmin";
+import { logout } from "@/api/requests";
 
 function Header() {
   const role = localStorage.getItem("role");
+  const go = useNavigate();
   return (
     <>
       <aside className="aside-bar">
@@ -25,16 +27,23 @@ function Header() {
             </Link>
           </div>
           <div className="setting_item">
-            <Link to="/">
+            <div
+              onClick={async () => {
+                await logout();
+                go("/");
+              }}
+            >
               <img src={icoLogout} alt="icoLogout" className="nav-icon" />
-            </Link>
-            <Link
-              to="/"
-              onClick={() => localStorage.clear()}
+            </div>
+            <div
+              onClick={async () => {
+                await logout();
+                go("/");
+              }}
               className="nav-text"
             >
               Déconnexion
-            </Link>
+            </div>
           </div>
         </div>
       </aside>

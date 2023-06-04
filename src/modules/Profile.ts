@@ -13,13 +13,13 @@ export const ProfileSchema = z
     mdpA: z
       .string()
       .trim()
-      .min(8, { message: "mote de pass doit contenir au moins 8 caractères" }),
-    Nmdp: z.string().trim().min(8, {
-      message: "nouveau mote de pass doit contenir au moins 8 caractères",
+      .min(6, { message: "mote de pass doit contenir au moins 6 caractères" }),
+    Nmdp: z.string().trim().min(6, {
+      message: "nouveau mote de pass doit contenir au moins 6 caractères",
     }),
-    Cmdp: z.string().trim().min(8, {
+    Cmdp: z.string().trim().min(6, {
       message:
-        "confirmation de mote de pass doit contenir au moins 8 caractères",
+        "confirmation de mote de pass doit contenir au moins 6 caractères",
     }),
   })
   .refine((data) => data.Nmdp === data.Cmdp, {

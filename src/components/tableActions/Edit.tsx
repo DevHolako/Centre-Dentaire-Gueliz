@@ -3,6 +3,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { Modal, useMantineTheme } from "@mantine/core";
 import ActeForm from "@/components/ActeForm";
 import ReceForm from "@/components/ReceForm";
+import DocFrom from "../DocForm";
 type Props = {
   id: number;
   type: number;
@@ -37,8 +38,10 @@ function Edit({ id, type }: Props) {
       >
         {type === 1 ? (
           <ActeForm method="Modifier" id={id} />
-        ) : (
+        ) : type === 2 ? (
           <ReceForm method="Modifier" id={id} />
+        ) : (
+          <DocFrom method="Modifier" id={id} />
         )}
       </Modal>
       <CodeBlock size={29} className="pointer" onClick={open} />

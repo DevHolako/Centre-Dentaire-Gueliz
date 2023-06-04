@@ -1,4 +1,5 @@
 import Admin from "@/pages/admin";
+import Docs from "@/pages/admin/docs";
 import Users from "@/pages/admin/users";
 import Layout from "@/pages/layouts/Layout";
 import Settings from "@/pages/receptionist/Profile";
@@ -14,6 +15,10 @@ export const AdminRoutes: RouteObject = {
     {
       path: "users",
       element: <Users />,
+    },
+    {
+      path: "docs",
+      element: <Docs />,
     },
     {
       path: "setting",

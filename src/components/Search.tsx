@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import "@styles/search/index.css";
-import { Acte, User } from "@/utils/types";
+import { Acte, Doc, User } from "@/utils/types";
 
-type Props<T extends Acte | User> = {
+type Props<T extends Acte | User | Doc> = {
   setter: (data: T[]) => void;
   data: T[];
-  type: "Acte" | "User";
+  type: "Acte" | "User" | "Doc";
 };
 
-function Search<T extends Acte | User>({ setter, data, type }: Props<T>) {
+function Search<T extends Acte | User | Doc>({ setter, data, type }: Props<T>) {
   const [searchQuery, setSearchQuery] = useState("");
   const [originalData] = useState(data);
 
@@ -28,6 +28,11 @@ function Search<T extends Acte | User>({ setter, data, type }: Props<T>) {
           user.nomComplete.toLowerCase().includes(searchQuery.toLowerCase()) ||
           user.login.toLowerCase().includes(searchQuery.toLowerCase())
         );
+      } else if (type === "Doc") {
+        const doc = row as Doc;
+        return doc.nomComplete
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase());
       }
       return false;
     });

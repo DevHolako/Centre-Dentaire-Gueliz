@@ -1,5 +1,6 @@
 // import Details from "../components/tableActions/details/Details";
-import Details from "@/components/tableActions/details/Details";
+import Delete from "@/components/tableActions/Delete";
+import Edit from "@/components/tableActions/Edit";
 import { Doc } from "@/utils/types";
 import type { TableColumn } from "react-data-table-component";
 
@@ -23,8 +24,14 @@ export const cols: TableColumn<Doc>[] = [
     reorder: true,
   },
   {
-    name: "Detail",
-    cell: (row) => <Details to={`doc/${row.id}`} />,
+    name: "Actions",
+    cell: (row) => (
+      <>
+        <Edit id={row.id} type={3} />
+        <Delete id={row.id} />
+      </>
+    ),
+    sortable: true,
     reorder: true,
   },
 ];

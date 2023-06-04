@@ -21,7 +21,7 @@ export const cols: TableColumn<Acte>[] = [
     name: "Doctor",
     selector: (row) => {
       const doc = data.find((obj) => obj.id === row.doc_id) as Doc;
-      return doc.fullname;
+      return doc.nomComplete;
     },
     sortable: true,
     reorder: true,

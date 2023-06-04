@@ -1,6 +1,6 @@
 export type Doc = {
   id: number;
-  fullname: string;
+  nomComplete: string;
   journalier: number;
   mensuel: number;
 };

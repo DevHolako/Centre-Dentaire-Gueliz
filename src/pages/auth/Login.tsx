@@ -5,6 +5,7 @@ import "@styles/login/index.css";
 import { LoginFrom, LoginSchema } from "@/modules/Login";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { isLogin, useRole } from "@/auth/utils";
+import { LoginRequest } from "@/api/requests";
 function Login() {
   const navto = useNavigate();
   const role = useRole();
@@ -23,16 +24,9 @@ function Login() {
     resolver: zodResolver(LoginSchema),
   });
 
-  const onSubmit: SubmitHandler<LoginFrom> = (data) => {
-    localStorage.setItem("userData", JSON.stringify(data));
-    if (data.login === "holako") {
-      localStorage.setItem("role", "rece");
-      navto("/dashboard");
-    }
-    if (data.login === "admin") {
-      localStorage.setItem("role", "admin");
-      navto("/panel");
-    }
+  const onSubmit: SubmitHandler<LoginFrom> = async (data) => {
+    await LoginRequest(data);
+    // localStorage.setItem("userData", JSON.stringify(data));
   };
 
   return (
