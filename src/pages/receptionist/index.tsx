@@ -1,6 +1,6 @@
 import DataTable, { createTheme } from "react-data-table-component";
-import { cols } from "@/Data/dt-cols";
-import data from "@/Data/dock-data.json";
+import { cols } from "@/Data/doc-cols";
+import data from "@/Data/docs.json";
 import "./styles/dash.css";
 import { DocStyles } from "@/styles/table/doc";
 import ActeForm from "@/components/ActeForm";
