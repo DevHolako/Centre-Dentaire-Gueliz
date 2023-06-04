@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 const PAYMENT_METHODS = ["card", "chéque", "espece"];
-import docs from "../Data/dock-data.json";
+import docs from "../Data/docs.json";
 import "@styles/card/index.css";
 import { Acte } from "@/utils/types";
 

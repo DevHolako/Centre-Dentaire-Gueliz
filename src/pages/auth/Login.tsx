@@ -13,7 +13,7 @@ function Login() {
       if (role == "admin") return navto("/panel");
       if (role == "rece") return navto("/dashboard");
     }
-  }, []);
+  }, [role, navto]);
 
   const {
     register,

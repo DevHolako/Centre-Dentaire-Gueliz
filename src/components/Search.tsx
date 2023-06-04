@@ -32,7 +32,7 @@ function Search<T extends Acte | User>({ setter, data, type }: Props<T>) {
       return false;
     });
     setter(filteredData);
-  }, [searchQuery, originalData, setter]);
+  }, [searchQuery, originalData, setter, type]);
 
   return (
     <div className="group">

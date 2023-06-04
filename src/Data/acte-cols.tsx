@@ -1,7 +1,6 @@
 import { Doc, Acte } from "@/utils/types";
 import data from "./docs.json";
 import { TableColumn } from "react-data-table-component";
-import EditPatients from "@/components/tableActions/Edit";
 import Delete from "@/components/tableActions/Delete";
 import Edit from "@/components/tableActions/Edit";
 
