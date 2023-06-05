@@ -7,15 +7,6 @@ import { LoginFrom } from "@/modules/Login";
 import { AxiosError } from "axios";
 import { Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
-// import {
-//   clearCredentials,
-//   setCredentials,
-// } from "@/app/features/auth/authSlice";
-// import { GetAllClients } from "@/app/features/clients/clientSlice";
-// import { store } from "@/app/store";
-// import { User, loginData } from "@helpers/types";
-// import { AxiosError } from "axios";
-// import { toast } from "react-toastify";
 
 export const LoginRequest = async (data: LoginFrom) => {
   try {
@@ -32,7 +23,6 @@ export const LoginRequest = async (data: LoginFrom) => {
     store.dispatch(GetAllDocs());
     store.dispatch(GetAllActes());
     store.dispatch(GetAllUsers());
-    // store.dispatch(setCredentials(response.data));
 
     if (role === "admin") {
       <Navigate to="/panel" />;
@@ -63,8 +53,6 @@ export const logout = async () => {
     );
     localStorage.clear();
     toast.success("👋 See you soon");
-    // store.dispatch(GetAllClients());
-    // return store.dispatch(clearCredentials());
   } catch (error: any) {
     toast.warn("⚠️ server error please try again");
     return console.log(error);
