@@ -1,4 +1,8 @@
 import AuthAxios from "@/api/axios";
+import { GetAllActes } from "@/app/features/actes/acteSlice";
+import { GetAllDocs } from "@/app/features/docs/docSlice";
+import { GetAllUsers } from "@/app/features/users/userSlice";
+import { store } from "@/app/store";
 import { LoginFrom } from "@/modules/Login";
 import { AxiosError } from "axios";
 import { Navigate } from "react-router-dom";
@@ -25,14 +29,17 @@ export const LoginRequest = async (data: LoginFrom) => {
     localStorage.setItem("userData", JSON.stringify(user));
     localStorage.setItem("role", role);
 
+    store.dispatch(GetAllDocs());
+    store.dispatch(GetAllActes());
+    store.dispatch(GetAllUsers());
+    // store.dispatch(setCredentials(response.data));
+
     if (role === "admin") {
       <Navigate to="/panel" />;
     } else {
       <Navigate to="/dashboard" />;
     }
     toast.success("👋 Wellcome back");
-
-    // return store.dispatch(setCredentials(response.data));
   } catch (error) {
     if (error && error instanceof AxiosError) {
       toast.warn(error.response?.data.message);
