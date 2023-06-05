@@ -1,8 +1,8 @@
-import { Doc, Acte } from "@/utils/types";
-import data from "./docs.json";
+import { Acte } from "@/utils/types";
 import { TableColumn } from "react-data-table-component";
 import Delete from "@/components/tableActions/Delete";
 import Edit from "@/components/tableActions/Edit";
+import { store } from "@/app/store";
 
 export const cols: TableColumn<Acte>[] = [
   {
@@ -20,7 +20,9 @@ export const cols: TableColumn<Acte>[] = [
   {
     name: "Doctor",
     selector: (row) => {
-      const doc = data.find((obj) => obj.id === row.doc_id) as Doc;
+      const data = store.getState().doc.docs;
+      const doc = data.find((obj) => obj.id === row.doc_id);
+      if (!doc) return "Not Found";
       return doc.nomComplete;
     },
     sortable: true,
@@ -39,7 +41,7 @@ export const cols: TableColumn<Acte>[] = [
     reorder: true,
   },
   {
-    name: "Method",
+    name: "Methode",
     selector: (row) => row.method,
     sortable: true,
     reorder: true,
@@ -55,7 +57,7 @@ export const cols: TableColumn<Acte>[] = [
     cell: (row) => (
       <>
         <Edit id={row.id} type={1} />
-        <Delete id={row.id} />
+        <Delete id={row.id} type={1} />
       </>
     ),
     sortable: true,

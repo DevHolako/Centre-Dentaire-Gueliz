@@ -1,9 +1,33 @@
+import AuthAxios from "@/api/axios";
+import { logout } from "@/api/requests";
 import { userData } from "@/auth/utils";
 import { ProfileFrom, ProfileSchema } from "@/modules/Profile";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { AxiosError } from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
+const changePassword = async (data: ProfileFrom) => {
+  try {
+    await AuthAxios.post("/password", data);
+    toast.success("password changed successfly");
+    await logout();
+    return true;
+  } catch (error) {
+    if (error && error instanceof AxiosError) {
+      toast.warn(error.response?.data.message);
+      return console.log("error =>", error.response?.data.message);
+    }
+    toast.warn("Server error. Please try again");
+    console.log("error =>", error);
+    return false;
+  }
+};
+
 function Settings() {
   const user = userData();
+  const nav = useNavigate();
   const {
     register,
     handleSubmit,
@@ -12,8 +36,9 @@ function Settings() {
     resolver: zodResolver(ProfileSchema),
   });
 
-  const onSubmit: SubmitHandler<ProfileFrom> = (data) => {
-    console.log(JSON.stringify(data));
+  const onSubmit: SubmitHandler<ProfileFrom> = async (data) => {
+    const changed = await changePassword(data);
+    if (changed) nav("/");
   };
 
   return (

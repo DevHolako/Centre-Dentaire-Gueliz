@@ -6,7 +6,7 @@ import type { TableColumn } from "react-data-table-component";
 
 export const cols: TableColumn<Doc>[] = [
   {
-    name: "Nom Complete",
+    name: "Nom complet",
     selector: (row) => row.nomComplete,
     sortable: true,
     reorder: true,
@@ -28,7 +28,7 @@ export const cols: TableColumn<Doc>[] = [
     cell: (row) => (
       <>
         <Edit id={row.id} type={3} />
-        <Delete id={row.id} />
+        <Delete id={row.id} type={2} />
       </>
     ),
     sortable: true,

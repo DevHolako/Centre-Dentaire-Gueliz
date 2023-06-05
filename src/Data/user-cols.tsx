@@ -17,17 +17,11 @@ export const cols: TableColumn<User>[] = [
     reorder: true,
   },
   {
-    name: "Mote de passe",
-    selector: (row) => `${row.mdp}`,
-    sortable: true,
-    reorder: true,
-  },
-  {
     name: "Actions",
     cell: (row) => (
       <>
-        <Edit id={row.id} type={0} />
-        <Delete id={row.id} />
+        <Edit id={row.id} type={2} />
+        <Delete id={row.id} type={3} />
       </>
     ),
     sortable: true,

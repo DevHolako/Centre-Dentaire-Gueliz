@@ -26,7 +26,6 @@ function Login() {
 
   const onSubmit: SubmitHandler<LoginFrom> = async (data) => {
     await LoginRequest(data);
-    // localStorage.setItem("userData", JSON.stringify(data));
   };
 
   return (

@@ -2,9 +2,15 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ActeSchema } from "@/modules/Acte";
 import type { ActeFrom } from "@/modules/Acte";
-import docs from "@/Data/docs.json";
-import data from "@/Data/actes.json";
 import "@styles/card/index.css";
+import { useAppDispatch, useAppSelector } from "@/utils/hooks/redux";
+import {
+  CreateActe,
+  GetAllActes,
+  UpdateActe,
+} from "@/app/features/actes/acteSlice";
+import { Acte } from "@/utils/types";
+import { GetAllDocs } from "@/app/features/docs/docSlice";
 const PAYMENT_METHODS = ["card", "chéque", "espece"];
 
 type Props = {
@@ -12,19 +18,34 @@ type Props = {
   id?: number;
 };
 export default function ActeForm({ method = "Ajouter", id }: Props) {
-  const target = data.find((obj) => obj.id === id);
-  console.log(target?.doc_id);
+  const { Actes } = useAppSelector((s) => s.acte);
+  const { docs } = useAppSelector((s) => s.doc);
+  const dispatch = useAppDispatch();
+  const target = Actes.find((obj) => obj.id === id);
+
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    reset,
+    formState: { errors, isSubmitting },
   } = useForm<ActeFrom>({
     resolver: zodResolver(ActeSchema),
   });
 
-  const onSubmit: SubmitHandler<ActeFrom> = (data) => {
-    console.log(isValid);
-    console.log(data);
+  const onSubmit: SubmitHandler<ActeFrom> = async (data) => {
+    if (method === "Ajouter") {
+      console.log("Ajouter");
+      await dispatch(CreateActe(data as Acte));
+      await dispatch(GetAllActes());
+      await dispatch(GetAllDocs());
+      reset();
+    }
+    if (method === "Modifier") {
+      const acte = data;
+      const Data = { id: target?.id, acte };
+      dispatch(UpdateActe(Data));
+      dispatch(GetAllActes());
+    }
   };
 
   return (
@@ -32,7 +53,7 @@ export default function ActeForm({ method = "Ajouter", id }: Props) {
       onSubmit={handleSubmit(onSubmit)}
       className={method === "Modifier" ? "custom_card " : "custom_card  bg"}
     >
-      <h2 className="card_title">Ajouter un nouvel Acte</h2>
+      <h2 className="card_title">Ajouter un Nouveau Acte</h2>
       <div className="inputBox">
         <input
           type="text"
@@ -67,11 +88,11 @@ export default function ActeForm({ method = "Ajouter", id }: Props) {
         <input
           type="number"
           required
-          {...register("montan")}
+          {...register("montant")}
           defaultValue={target ? target.montant : ""}
         />
-        <span className="user">Montan</span>
-        {errors.montan && <p>{errors.montan?.message}</p>}
+        <span className="user">Montant</span>
+        {errors.montant && <p>{errors.montant?.message}</p>}
       </div>
       <div className="inputBox">
         <input
@@ -124,7 +145,7 @@ export default function ActeForm({ method = "Ajouter", id }: Props) {
       </div>
 
       <button type="submit" className="btn">
-        {method}
+        {isSubmitting ? "submiting ..." : method}
       </button>
     </form>
   );

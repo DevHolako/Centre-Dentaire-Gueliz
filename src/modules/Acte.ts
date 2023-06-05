@@ -13,7 +13,7 @@ export const ActeSchema = z.object({
     .string()
     .trim()
     .min(2, { message: "prenom doit contenir au moins 2 caractères" }),
-  montan: z.string().transform((value) => parseInt(value, 10)),
+  montant: z.string().transform((value) => parseInt(value, 10)),
   date: z.string(),
   method: z
     .enum(["card", "espece", "chéque"])

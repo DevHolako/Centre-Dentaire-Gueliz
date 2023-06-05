@@ -4,6 +4,7 @@ export type Doc = {
   journalier: number;
   mensuel: number;
 };
+
 export type Acte = {
   id: number;
   nom: string;
@@ -19,6 +20,6 @@ export type User = {
   id: number;
   nomComplete: string;
   login: string;
-  mdp: string;
+  password: string;
   isAdmin: boolean;
 };

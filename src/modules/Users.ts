@@ -9,7 +9,7 @@ export const UserSchema = z.object({
     .string()
     .trim()
     .min(4, { message: "login doit contenir au moins 4 caractères" }),
-  mdp: z
+  password: z
     .string()
     .trim()
     .min(6, { message: "mote de pass doit contenir au moins 6 caractères" }),

@@ -3,24 +3,35 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { DocSchema } from "@/modules/Doc";
 import type { DocForm } from "@/modules/Doc";
 import "@styles/card/index.css";
-import data from "@/Data/docs.json";
+import { useAppDispatch, useAppSelector } from "@/utils/hooks/redux";
+import { Createdocs, Updatedocs } from "@/app/features/docs/docSlice";
 type Props = {
   method: "Ajouter" | "Modifier";
   id?: number;
 };
 export default function DocFrom({ method = "Ajouter", id }: Props) {
-  const target = data.find((obj) => obj.id === id);
+  const { docs } = useAppSelector((s) => s.doc);
+  const dispatch = useAppDispatch();
+
+  const target = docs.find((obj) => obj.id === id);
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    reset,
+    formState: { errors },
   } = useForm<DocForm>({
     resolver: zodResolver(DocSchema),
   });
 
   const onSubmit: SubmitHandler<DocForm> = (data) => {
-    console.log(isValid);
-    console.log(data);
+    if (method === "Ajouter") {
+      dispatch(Createdocs(data));
+      reset();
+    }
+    if (method === "Modifier") {
+      const Data = { id: target?.id, doc: data };
+      dispatch(Updatedocs(Data));
+    }
   };
 
   return (
@@ -28,7 +39,7 @@ export default function DocFrom({ method = "Ajouter", id }: Props) {
       onSubmit={handleSubmit(onSubmit)}
       className={method === "Modifier" ? "custom_card " : "custom_card  bg"}
     >
-      <h2 className="card_title">{method} un nouvel utilisateur</h2>
+      <h2 className="card_title">{method} un Nouveau Médecins</h2>
       <div className="inputBox">
         <input
           type="text"

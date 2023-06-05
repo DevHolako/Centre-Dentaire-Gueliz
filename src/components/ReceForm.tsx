@@ -4,6 +4,9 @@ import { UserSchema } from "@/modules/Users";
 import type { UserForm } from "@/modules/Users";
 import "@styles/card/index.css";
 import data from "@/Data/users.json";
+import { useAppDispatch, useAppSelector } from "@/utils/hooks/redux";
+import { CreateUser, UpdateUser } from "@/app/features/users/userSlice";
+import { User } from "@/utils/types";
 type Props = {
   method: "Ajouter" | "Modifier";
   id?: number;
@@ -11,7 +14,9 @@ type Props = {
 
 const Role = ["Admin", "User"];
 export default function ReceForm({ method = "Ajouter", id }: Props) {
-  const target = data.find((obj) => obj.id === id);
+  const { users } = useAppSelector((s) => s.user);
+  const dispatch = useAppDispatch();
+  const target = users.find((obj) => obj.id === id);
   const {
     register,
     handleSubmit,
@@ -21,8 +26,12 @@ export default function ReceForm({ method = "Ajouter", id }: Props) {
   });
 
   const onSubmit: SubmitHandler<UserForm> = (data) => {
-    console.log(isValid);
-    console.log(data);
+    if (method === "Ajouter") {
+      dispatch(CreateUser(data));
+    }
+    if (method === "Modifier") {
+      dispatch(UpdateUser(data));
+    }
   };
 
   return (
@@ -30,7 +39,7 @@ export default function ReceForm({ method = "Ajouter", id }: Props) {
       onSubmit={handleSubmit(onSubmit)}
       className={method === "Modifier" ? "custom_card " : "custom_card  bg"}
     >
-      <h2 className="card_title">{method} un nouvel utilisateur</h2>
+      <h2 className="card_title">{method} un Nouveau utilisateur</h2>
       <div className="inputBox">
         <input
           type="text"
@@ -56,12 +65,12 @@ export default function ReceForm({ method = "Ajouter", id }: Props) {
         <input
           type="password"
           required
-          {...register("mdp")}
-          defaultValue={target?.mdp}
+          {...register("password")}
+          defaultValue={target?.password}
           autoComplete="current-password"
         />
         <span className="user">Mote de pass</span>
-        {errors.mdp && <p>{errors.mdp?.message}</p>}
+        {errors.password && <p>{errors.password?.message}</p>}
       </div>
       <div className="inputBox">
         <select

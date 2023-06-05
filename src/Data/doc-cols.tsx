@@ -5,7 +5,7 @@ import type { TableColumn } from "react-data-table-component";
 
 export const cols: TableColumn<Doc>[] = [
   {
-    name: "Nom Complete",
+    name: "Nom complet",
     selector: (row) => row.nomComplete,
     sortable: true,
     reorder: true,

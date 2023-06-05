@@ -4,12 +4,14 @@ import data from "@/Data/docs.json";
 import "./styles/dash.css";
 import { DocStyles } from "@/styles/table/doc";
 import ActeForm from "@/components/ActeForm";
+import { useAppSelector } from "@/utils/hooks/redux";
 createTheme("holako", {
   background: {
     default: "transparnt",
   },
 });
 function ReceptionistDashboard() {
+  const { docs } = useAppSelector((s) => s.doc);
   return (
     <div className="dashboard-container">
       <ActeForm method="Ajouter" />
@@ -17,7 +19,7 @@ function ReceptionistDashboard() {
         <h2 className="title is-3">RECETTE MEDECIN</h2>
         <DataTable
           columns={cols}
-          data={data}
+          data={docs}
           customStyles={DocStyles}
           defaultSortAsc
           responsive

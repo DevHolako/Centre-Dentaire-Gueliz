@@ -1,44 +1,9 @@
-import { useEffect, useState } from "react";
 import "@styles/search/index.css";
-import { Acte, Doc, User } from "@/utils/types";
 
-type Props<T extends Acte | User | Doc> = {
-  setter: (data: T[]) => void;
-  data: T[];
-  type: "Acte" | "User" | "Doc";
+type Props = {
+  fn: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
-
-function Search<T extends Acte | User | Doc>({ setter, data, type }: Props<T>) {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [originalData] = useState(data);
-
-  useEffect(() => {
-    const filteredData = originalData.filter((row) => {
-      if (type === "Acte") {
-        const acte = row as Acte;
-        return (
-          acte.nom.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          acte.prenom.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          acte.method.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          acte.acte.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-      } else if (type === "User") {
-        const user = row as User;
-        return (
-          user.nomComplete.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          user.login.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-      } else if (type === "Doc") {
-        const doc = row as Doc;
-        return doc.nomComplete
-          .toLowerCase()
-          .includes(searchQuery.toLowerCase());
-      }
-      return false;
-    });
-    setter(filteredData);
-  }, [searchQuery, originalData, setter, type]);
-
+function Search({ fn }: Props) {
   return (
     <div className="group">
       <svg className="icon" aria-hidden="true" viewBox="0 0 24 24">
@@ -50,8 +15,7 @@ function Search<T extends Acte | User | Doc>({ setter, data, type }: Props<T>) {
         placeholder="Search"
         type="search"
         className="input"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        onChange={fn}
       />
     </div>
   );
