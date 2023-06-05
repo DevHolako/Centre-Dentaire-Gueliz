@@ -1,5 +1,5 @@
 import Search from "@/components/Search";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import DataTable from "react-data-table-component";
 // import UsersData from "@/Data/users.json";
 import { PatientsStyles } from "@/styles/table/patient";

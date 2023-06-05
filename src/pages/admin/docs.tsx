@@ -2,7 +2,6 @@ import Search from "@/components/Search";
 import DataTable from "react-data-table-component";
 import { PatientsStyles } from "@/styles/table/patient";
 import { useEffect } from "react";
-import { Doc } from "@/utils/types";
 import { cols } from "@/Data/docs-cols";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks/redux";
 import { GetAllDocs, search } from "@/app/features/docs/docSlice";

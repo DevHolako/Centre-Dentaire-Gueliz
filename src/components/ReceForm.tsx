@@ -3,10 +3,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { UserSchema } from "@/modules/Users";
 import type { UserForm } from "@/modules/Users";
 import "@styles/card/index.css";
-import data from "@/Data/users.json";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks/redux";
 import { CreateUser, UpdateUser } from "@/app/features/users/userSlice";
-import { User } from "@/utils/types";
 type Props = {
   method: "Ajouter" | "Modifier";
   id?: number;
@@ -20,7 +18,7 @@ export default function ReceForm({ method = "Ajouter", id }: Props) {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<UserForm>({
     resolver: zodResolver(UserSchema),
   });
@@ -30,7 +28,8 @@ export default function ReceForm({ method = "Ajouter", id }: Props) {
       dispatch(CreateUser(data));
     }
     if (method === "Modifier") {
-      dispatch(UpdateUser(data));
+      const Data = { id: target?.id, user: data };
+      dispatch(UpdateUser(Data));
     }
   };
 

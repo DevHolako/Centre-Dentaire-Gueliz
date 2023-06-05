@@ -13,12 +13,14 @@ export default function UserFrom({ method = "Ajouter", id }: Props) {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<UserForm>({
     resolver: zodResolver(UserSchema),
   });
 
-  const onSubmit: SubmitHandler<UserForm> = (data) => {};
+  const onSubmit: SubmitHandler<UserForm> = (data) => {
+    console.log(data);
+  };
 
   return (
     <form

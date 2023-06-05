@@ -3,6 +3,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import AuthAxios from "@/api/axios";
 import { toast } from "react-toastify";
 import { User } from "@/utils/types";
+import { UserForm } from "@/modules/Users";
 
 type UserPayload = {
   message: string;
@@ -31,7 +32,7 @@ export const GetAllUsers = createAsyncThunk(
 
 export const CreateUser = createAsyncThunk(
   "user/CreateUser",
-  async (user: User, thunkAPI) => {
+  async (user: UserForm, thunkAPI) => {
     try {
       const response = await AuthAxios.post("users", JSON.stringify(user));
       return response.data;
@@ -42,8 +43,8 @@ export const CreateUser = createAsyncThunk(
 );
 
 type Data = {
-  id: number;
-  user: User;
+  id?: number;
+  user: UserForm;
 };
 export const UpdateUser = createAsyncThunk(
   "user/UpdateUser",
