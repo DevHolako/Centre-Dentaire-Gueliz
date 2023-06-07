@@ -42,6 +42,7 @@ export const LoginRequest = async (data: LoginFrom) => {
 
 export const logout = async () => {
   try {
+    localStorage.clear();
     await AuthAxios.post(
       "/logout",
       {},
@@ -51,9 +52,9 @@ export const logout = async () => {
         },
       }
     );
-    localStorage.clear();
     toast.success("👋 See you soon");
   } catch (error: any) {
+    localStorage.clear();
     toast.warn("⚠️ server error please try again");
     return console.log(error);
   }
