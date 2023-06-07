@@ -43,6 +43,7 @@ export const LoginRequest = async (data: LoginFrom) => {
 export const logout = async () => {
   try {
     localStorage.clear();
+
     await AuthAxios.post(
       "/logout",
       {},
