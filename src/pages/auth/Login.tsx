@@ -41,6 +41,9 @@ function Login() {
           className="custom_card bg login-form"
         >
           <h2 className="card_title">Login</h2>
+          <p>
+            <span>demo</span> :  holako / password
+          </p>
           <div className="inputBox">
             <input
               type="text"
