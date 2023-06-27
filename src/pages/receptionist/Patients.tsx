@@ -34,6 +34,7 @@ function Patients() {
         responsive
         highlightOnHover
         customStyles={PatientsStyles}
+        progressPending={filteredData.length === 0}
       />
     </div>
   );

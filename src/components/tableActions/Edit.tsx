@@ -37,11 +37,11 @@ function Edit({ id, type }: Props) {
         }}
       >
         {type === 1 ? (
-          <ActeForm method="Modifier" id={id} />
+          <ActeForm method="Modifier" id={id} key={id} />
         ) : type === 2 ? (
-          <ReceForm method="Modifier" id={id} />
+          <ReceForm method="Modifier" id={id} key={id} />
         ) : (
-          <DocFrom method="Modifier" id={id} />
+          <DocFrom method="Modifier" id={id} key={id} />
         )}
       </Modal>
       <CodeBlock size={29} className="pointer" onClick={open} />
