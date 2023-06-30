@@ -18,7 +18,7 @@ function ReceptionistDashboard() {
   useEffect(() => {
     dispatch(GetAllDocs());
     dispatch(GetAllActes());
-  }, [dispatch]);
+  }, []);
 
   const { docs } = useAppSelector((s) => s.doc);
   return (

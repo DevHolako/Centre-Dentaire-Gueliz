@@ -12,16 +12,16 @@ function Delete({ id, type }: Props) {
   const click = async () => {
     if (type === 1) {
       await dispatch(DeleteActe(id.toLocaleString()));
+      await dispatch(GetAllDocs());
+      await dispatch(GetAllActes());
     }
     if (type === 2) {
       await dispatch(Deletedocs(id.toLocaleString()));
+      await dispatch(GetAllDocs());
     }
     if (type === 3) {
       await dispatch(DeleteUser(id.toLocaleString()));
     }
-    await dispatch(GetAllUsers());
-    await dispatch(GetAllActes());
-    await dispatch(GetAllDocs());
   };
 
   return <TrashSimple size={29} onClick={click} className="pointer" />;

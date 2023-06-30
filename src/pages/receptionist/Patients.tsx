@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from "@/utils/hooks/redux";
 import { GetAllActes, search } from "@/app/features/actes/acteSlice";
 import { GetAllDocs } from "@/app/features/docs/docSlice";
 function Patients() {
-  const { filteredData, status } = useAppSelector((s) => s.acte);
+  const { filteredData } = useAppSelector((s) => s.acte);
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(GetAllDocs());
@@ -34,7 +34,6 @@ function Patients() {
         responsive
         highlightOnHover
         customStyles={PatientsStyles}
-        progressPending={status === "pending"}
       />
     </div>
   );
