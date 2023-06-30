@@ -1,6 +1,6 @@
 import { DeleteActe, GetAllActes } from "@/app/features/actes/acteSlice";
 import { Deletedocs, GetAllDocs } from "@/app/features/docs/docSlice";
-import { DeleteUser, GetAllUsers } from "@/app/features/users/userSlice";
+import { DeleteUser } from "@/app/features/users/userSlice";
 import { useAppDispatch } from "@/utils/hooks/redux";
 import { TrashSimple } from "@phosphor-icons/react";
 type Props = {

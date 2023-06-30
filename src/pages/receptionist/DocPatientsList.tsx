@@ -1,10 +1,8 @@
 import { cols } from "@/Data/acte-cols";
-import { GetAllActes, search } from "@/app/features/actes/acteSlice";
-import { GetAllDocs } from "@/app/features/docs/docSlice";
+import { search } from "@/app/features/actes/acteSlice";
 import Search from "@/components/Search";
 import { PatientsStyles } from "@/styles/table/patient";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks/redux";
-import { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import { Navigate, useParams } from "react-router-dom";
 
