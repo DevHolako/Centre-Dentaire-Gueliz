@@ -6,10 +6,19 @@ import icoLogout from "@assets/asied/logout.svg";
 import NavRece from "./NavRece";
 import NavAdmin from "./NavAdmin";
 import { logout } from "@/api/requests";
+import { useState } from "react";
+import { Loader } from "@mantine/core";
 
 function Header() {
+  const [islogout, setIsLogout] = useState(false);
   const role = localStorage.getItem("role");
   const go = useNavigate();
+  const logouthandler = async () => {
+    setIsLogout(true);
+    await logout();
+    setIsLogout(false);
+    go("/");
+  };
   return (
     <>
       <aside className="aside-bar">
@@ -27,22 +36,15 @@ function Header() {
             </Link>
           </div>
           <div className="setting_item">
-            <div
-              onClick={async () => {
-                await logout();
-                go("/");
-              }}
-            >
-              <img src={icoLogout} alt="icoLogout" className="nav-icon" />
+            <div onClick={logouthandler}>
+              {islogout ? (
+                <Loader color="black" size={"sm"} />
+              ) : (
+                <img src={icoLogout} alt="icoLogout" className="nav-icon" />
+              )}
             </div>
-            <div
-              onClick={async () => {
-                await logout();
-                go("/");
-              }}
-              className="nav-text"
-            >
-              Déconnexion
+            <div onClick={logouthandler} className="nav-text">
+              {islogout ? "" : " Déconnexion"}
             </div>
           </div>
         </div>

@@ -19,7 +19,7 @@ function Login() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<LoginFrom>({
     resolver: zodResolver(LoginSchema),
   });
@@ -42,7 +42,7 @@ function Login() {
         >
           <h2 className="card_title">Login</h2>
           <p>
-            <span>demo</span> :  holako / password
+            <span>demo</span> : holako / password
           </p>
           <div className="inputBox">
             <input
@@ -65,7 +65,7 @@ function Login() {
             {errors.password && <p>{errors.password?.message}</p>}
           </div>
           <button type="submit" className="btn">
-            Submit
+            {isSubmitting ? "logining..." : "Login"}
           </button>
         </form>
       </section>
